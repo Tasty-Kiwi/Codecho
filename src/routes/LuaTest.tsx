@@ -43,7 +43,7 @@ export default function LuaTest() {
   const { toast } = useToast()
   return (
     <>
-      <h1 className="text-4xl font-bold pb-2">Mooncourse</h1>
+      <h1 className="text-4xl font-bold pb-2">Codecho</h1>
       <div className="pb-2">
         <Button onClick={() => setCount((count) => count + 1)}>
           count is {count}
