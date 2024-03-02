@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/components/ui/use-toast"
 import { LuaFactory } from "wasmoon"
+import Editor from '@monaco-editor/react'
+import { useRef } from 'react'
 
 const factory = new LuaFactory()
 
@@ -23,6 +25,8 @@ async function evaluateLua(code: string): void {
 
 export default function Index() {
   const [count, setCount] = useState(0)
+  const editorRef = useRef(null)
+
   const { toast } = useToast()
   return (
     <>
@@ -32,11 +36,14 @@ export default function Index() {
           count is {count}
         </Button>
       </div>
-      <div>
+      <div className='pb-4'>
         <Button onClick={async () => {
           toast({ title: "Lua executed", })
-          await evaluateLua('print("lua works")')
+          await evaluateLua(editorRef.current.getValue())
         }}>Execute Lua</Button>
+      </div>
+      <div>
+      <Editor height="10rem" defaultLanguage="lua" defaultValue='print("Hello, world!")' theme='vs-dark' onMount={(editor) => {editorRef.current = editor}}/>
       </div>
     </>
   )
