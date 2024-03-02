@@ -7,7 +7,7 @@ export default function Index() {
 
   return (
     <>
-      <h1 className="text-4xl font-bold mb-2">Mooncourse</h1>
+      <h1 className="text-4xl font-bold mb-2">Codecho</h1>
       <div className="m-2" onClick={() => setLocation("/courses")}>
         <Button>Courses</Button>
       </div>
