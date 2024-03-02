@@ -1,4 +1,4 @@
-# Courses structure (WIP)
+# Course structure (WIP)
 
 ## Introduction to Computing
 
@@ -13,6 +13,7 @@
 - Basic
   - About & History
   - Printing
+  - Comments
   - Variables & Types
   - Input
   - Arithmetic
@@ -22,6 +23,7 @@
   - Functions
 - Intermediate
   - Constants
+  - Math library
   - String manipulation
   - Table manipulation
 - Advanced
