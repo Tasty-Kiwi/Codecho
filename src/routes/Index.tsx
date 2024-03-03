@@ -11,7 +11,7 @@ export default function Index() {
       <div className="m-2" onClick={() => setLocation("/courses")}>
         <Button>Courses</Button>
       </div>
-      <div className="m-2" onClick={() => setLocation("/lua-test")}>
+      <div className="m-2" onClick={() => setLocation("/courses/lua/beginner/printing")}>
         <Button>Lua Test</Button>
       </div>
     </>
