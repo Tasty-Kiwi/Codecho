@@ -2,20 +2,33 @@ import LuaTest from "@/components/Tests/LuaTest.tsx"
 
 # Printing things to the console
 
-Use
+Let's get started with some actual coding!
+
+To start with, we will try to use the `print()` function to print something to the console.
+
+## Example 1: Printing "Hi!" to the console
+
+In this example, we will write a Lua program that will print "Hi!" to the console.
 
 ```lua
-print("string")
+print("Hi!")
 ```
 
-to print
+The parentheses indicate that we want to call a function.
+
+The quotation marks indicate that we are writing a string. For more information on strings, refer to [here]().
 
 ```
-string
+> Hi!
 ```
 
-to the console.
+As you can see, "Hi!" is printed to the console! How cool, right?
 
-Task: Make an application that prints `Hello, world!` to the console.
+## Task 1: Make an application that prints "Hello, world!" to the console
 
-<LuaTest printValidator={(str) => str === "Hello, world!"} />
+<LuaTest
+  defaultValue={
+    "-- Task 1: Make an application that prints `Hello, world!` to the console.\n"
+  }
+  printValidator={(str) => str === "Hello, world!"}
+/>

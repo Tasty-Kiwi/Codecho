@@ -12,6 +12,7 @@ async function evaluateLua(
   toastFunction: Function,
   printValidator: (str: string) => boolean,
   luaValidator: (engine: LuaEngine) => boolean,
+  inputString: string,
 ) {
   const lua = await factory.createEngine()
 
@@ -30,7 +31,7 @@ async function evaluateLua(
         })
     })
 
-    lua.global.set("input", () => "Example")
+    lua.global.set("input", () => inputString)
     await lua.doString("io.read = input")
 
     // Run a lua string
@@ -55,6 +56,8 @@ async function evaluateLua(
 export default function LuaTest(props: {
   printValidator: (str: string) => boolean
   luaValidator: (engine: LuaEngine) => boolean
+  inputString: string
+  defaultValue: string
 }) {
   const editorRef = useRef(null)
 
@@ -68,6 +71,7 @@ export default function LuaTest(props: {
             toast,
             props.printValidator,
             props.luaValidator,
+            props.inputString ?? "",
           )
         }}
         className="mb-2"
@@ -77,9 +81,9 @@ export default function LuaTest(props: {
       <div>
         <Editor
           defaultLanguage="lua"
-          defaultValue='print("Hello, world!")'
+          defaultValue={props.defaultValue}
           beforeMount={(monaco) => {
-            monaco.editor.defineTheme("codecho", {
+            monaco.editor.defineTheme("codecho-dark", {
               base: "vs-dark",
               inherit: true,
               rules: [],
@@ -89,7 +93,7 @@ export default function LuaTest(props: {
               },
             })
           }}
-          theme="codecho"
+          theme="codecho-dark"
           onMount={(editor) => {
             editorRef.current = editor
             editor.updateOptions({
@@ -97,7 +101,8 @@ export default function LuaTest(props: {
             })
           }}
           height={"15rem"}
-          loading={<Skeleton className="h-[10rem] w-150wv rounded-lg" />}
+          width={"60rem"}
+          loading={<Skeleton className="h-[10rem] w-[60rem] rounded-lg" />}
         />
         <div>
           <h3>Console</h3>

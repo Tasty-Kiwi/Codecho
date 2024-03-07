@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { useLocation } from "wouter"
+import Logo from "@/assets/Logo.svg"
 
 export default function Index() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -7,7 +8,8 @@ export default function Index() {
 
   return (
     <>
-      <h1 className="text-4xl font-bold mb-2">Codecho</h1>
+      {/* <h1 className="text-4xl font-bold mb-2">Codecho</h1> */}
+      <img src={Logo} alt="" />
       <div className="m-2" onClick={() => setLocation("/courses")}>
         <Button>Courses</Button>
       </div>
