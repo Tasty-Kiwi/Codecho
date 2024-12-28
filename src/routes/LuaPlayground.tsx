@@ -1,18 +1,17 @@
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/components/ui/use-toast"
-import { LuaEngine, LuaFactory } from "wasmoon"
+import { LuaFactory } from "wasmoon"
 import Editor from "@monaco-editor/react"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { Skeleton } from "@/components/ui/skeleton"
+import { Textarea } from "@/components/ui/textarea"
 
 const factory = new LuaFactory()
 
 async function evaluateLua(
   code: string,
   toastFunction: Function,
-  printValidator: (str: string) => boolean,
   consoleRef: React.RefObject<HTMLPreElement | null>,
-  luaValidator: (engine: LuaEngine) => boolean,
   inputString: string,
 ) {
   const lua = await factory.createEngine()
@@ -25,50 +24,35 @@ async function evaluateLua(
       if (typeof str === "string" || typeof str === "number") {
         console.log(`🌙 -> ${str}`)
         if (consoleRef.current) consoleRef.current.innerText += `→ ${str}\n`
-      } else {
-        console.log(`🌙 -> ${JSON.stringify(str)}`)
-        if (consoleRef.current)
-          consoleRef.current.innerText += `→ ${JSON.stringify(str)}\n`
+        return
       }
-      if (printValidator(str) === true)
-        toastFunction({ title: "✅ Correct! Good job!" })
-      else
-        toastFunction({
-          title: "❌ Please try again!",
-        })
+      console.log(`🌙 -> ${JSON.stringify(str)}`)
+      if (consoleRef.current)
+        consoleRef.current.innerText += `→ ${JSON.stringify(str)}\n`
     })
 
     lua.global.set("input", () => {
       console.log(`🌙 <- ${inputString}`)
-      if (consoleRef.current)
-        consoleRef.current.innerText += `← ${inputString}\n`
+      if (consoleRef.current) consoleRef.current.innerText += `← ${inputString}\n`
       return inputString
     })
     await lua.doString("io.read = input")
 
     // Run a lua string
     await lua.doString(code)
-    if (luaValidator) {
-      if ((await luaValidator(lua)) === true)
-        toastFunction({ title: "✅ Correct! Good job!" })
-      else
-        toastFunction({
-          title: "❌ Please try again!",
-        })
-    }
-  } catch (error: Error) {
+  } catch (error: any) {
     console.error(error)
     toastFunction({ title: "🛑 Error Found!", description: error.message })
+    if (consoleRef.current)
+      consoleRef.current.innerText += `=========\n🛑 Error Found!\n${error.message}\n=========\n`
   } finally {
     // Close the lua environment, so it can be freed
     lua.global.close()
   }
 }
 
-export default function LuaTest(props: {
-  printValidator: (str: string) => boolean
-  luaValidator: (engine: LuaEngine) => boolean
-  inputString: string
+export function LuaRunner(props: {
+  inputString?: string
   defaultValue: string
 }) {
   const editorRef = useRef(null)
@@ -83,15 +67,13 @@ export default function LuaTest(props: {
           await evaluateLua(
             editorRef.current.getValue(),
             toast,
-            props.printValidator,
             consoleRef,
-            props.luaValidator,
             props.inputString ?? "",
           )
         }}
         className="mb-2"
       >
-        Run & Check!
+        Run!
       </Button>
       <div>
         <Editor
@@ -124,6 +106,21 @@ export default function LuaTest(props: {
           <pre ref={consoleRef}></pre>
         </div>
       </div>
+    </div>
+  )
+}
+
+export default function LuaPlayground() {
+  const [input, setInput] = useState("")
+  return (
+    <div className="p-4">
+      <h1 className="text-4xl font-bold mb-3">Lua Playground</h1>
+      <Textarea
+        onChange={(event) => setInput(event.target.value)}
+        placeholder="Custom input"
+        className="mb-3"
+      />
+      <LuaRunner inputString={input} defaultValue={`print("Hello, World!")`} />
     </div>
   )
 }

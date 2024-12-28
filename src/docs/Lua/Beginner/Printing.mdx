@@ -19,16 +19,25 @@ The parentheses indicate that we want to call a function.
 The quotation marks indicate that we are writing a string. For more information on strings, refer to [here]().
 
 ```
-> Hi!
+→ Hi!
 ```
 
 As you can see, "Hi!" is printed to the console! How cool, right?
 
-## Task 1: Make an application that prints "Hello, world!" to the console
+## Task 1: Modify the application to print "Hello, world!" to the console
 
 <LuaTest
   defaultValue={
-    "-- Task 1: Make an application that prints `Hello, world!` to the console.\n"
+    '-- Task 1: Modify the application to print `Hello, world!` to the console.\nprint("Hi!")'
   }
   printValidator={(str) => str === "Hello, world!"}
+/>
+
+## Task 2: Create an application that prints "I am learning Lua!" to the console
+
+<LuaTest
+  defaultValue={
+    '-- Task 2: Create an application that prints `I am learning Lua!` to the console.\n'
+  }
+  printValidator={(str) => str === "I am learning Lua!"}
 />
