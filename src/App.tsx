@@ -9,8 +9,10 @@ import LuaCourses from "./routes/Courses/Lua/Root"
 import CompiuterBasicsCourses from "./routes/Courses/ComputerBasics/Root"
 import GitCourses from "./routes/Courses/Git/Root"
 import CompiuterBasicsIntro from "./docs/ComputerBasics/Intro.mdx"
-import Printing from "./docs/Lua/Beginner/Printing.mdx"
 import AboutAndHistory from "./docs/Lua/Beginner/AboutAndHistory.mdx"
+import Printing from "./docs/Lua/Beginner/Printing.mdx"
+import Comments from "./docs/Lua/Beginner/Comments.mdx"
+
 import Logo from "@/assets/Logo.svg"
 import LuaPlayground from "./routes/LuaPlayground"
 
@@ -46,13 +48,40 @@ function App() {
             <Printing />
           </div>
           <Separator className="my-2" />
-          <Button
-            onClick={() =>
-              setLocation("/courses/lua/beginner/about-and-history")
-            }
-          >
-            ⬅️ Back
-          </Button>
+          <div className="flex justify-between">
+            <Button
+              onClick={() =>
+                setLocation("/courses/lua/beginner/about-and-history")
+              }
+            >
+              ⬅️ Back
+            </Button>
+            <Button
+              onClick={() => setLocation("/courses/lua/beginner/comments")}
+            >
+              Next ➡️
+            </Button>
+          </div>
+        </Route>
+        <Route path="/courses/lua/beginner/comments">
+          <div className="prose prose-invert prose-headings:font-bold">
+            <Comments />
+          </div>
+          <Separator className="my-2" />
+          <div className="flex justify-between">
+            <Button
+              onClick={() =>
+                setLocation("/courses/lua/beginner/printing")
+              }
+            >
+              ⬅️ Back
+            </Button>
+            {/* <Button
+              onClick={() => setLocation("/courses/lua/beginner/comments")}
+            >
+              Next ➡️
+            </Button> */}
+          </div>
         </Route>
         <Route path="/courses/git" component={GitCourses} />
         <Route path="/lua-playground" component={LuaPlayground} />

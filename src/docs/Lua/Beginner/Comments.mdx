@@ -1,0 +1,57 @@
+import LuaTest from "@/components/Tests/LuaTest.tsx"
+
+# Comments
+
+In Lua, there are two ways to write comments:
+
+1. Single-line comments
+
+You can write single-line comments by starting the line with `--`. Anything after `--` will be ignored by the Lua interpreter.
+
+```lua
+-- This is a single-line comment
+print("Hello, world!") -- This is another single-line comment
+```
+
+2. Multi-line comments
+
+You can write multi-line comments by enclosing the text within `--[[` and `]]`.
+
+```lua
+--[[
+This is a multi-line comment.
+It can span multiple lines.
+]]
+print("Hello, world!")
+```
+
+## Task 1: Modify the application to uncomment the `print` statement
+
+<LuaTest
+  defaultValue={
+    '-- Task 1: Modify the application to uncomment the `print` statement.\n-- print("The code has been uncommented!")'
+  }
+  printValidator={(str) => str === "The code has been uncommented!"}
+/>
+
+## Task 2: Modify the application to uncomment the `print` statement
+
+<LuaTest
+  defaultValue={
+    '-- Task 2: Modify the application to uncomment the `print` statement.\n--[[\nprint("The code has been uncommented!")\n]]'
+  }
+  printValidator={(str) => str === "The code has been uncommented!"}
+/>
+
+## Task 3: Modify the application to comment the `print` statement
+
+<LuaTest
+  defaultValue={
+    '-- Task 3: Modify the application to comment the `print` statement.\nprint("Don\'t comment me!")\nprint("Comment me please!")'
+  }
+  printValidator={(str) => str === "Don't comment me!"}
+/>
+
+### Tip
+
+You can use <kbd>Ctrl</kbd> + <kbd>/</kbd> to comment or uncomment a line in most code editors, including the one used in Codecho!
