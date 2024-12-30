@@ -8,14 +8,16 @@ export default function Courses() {
   return (
     <>
       <h1 className="text-4xl font-bold mb-2">Courses</h1>
-      <div className="m-2" onClick={() => setLocation("/courses/comp-basics")}>
-        <Button>Introduction to Computing</Button>
-      </div>
-      <div className="m-2" onClick={() => setLocation("/courses/lua")}>
-        <Button>Programming with Lua</Button>
-      </div>
-      <div className="m-2" onClick={() => setLocation("/courses/git")}>
-        <Button>Introduction to Version Control with Git</Button>
+      <div className="flex flex-row gap-2">
+        <Button onClick={() => setLocation("/courses/comp-basics")}>
+          Introduction to Computing
+        </Button>
+        <Button onClick={() => setLocation("/courses/lua")}>
+          Programming with Lua
+        </Button>
+        <Button onClick={() => setLocation("/courses/git")}>
+          Introduction to Version Control with Git
+        </Button>
       </div>
     </>
   )

@@ -6,7 +6,7 @@ import Index from "./routes/Index"
 import NotFound from "./routes/NotFound"
 import Courses from "./routes/Courses/Root"
 import LuaCourses from "./routes/Courses/Lua/Root"
-import CompiuterBasicsCourses from "./routes/Courses/ComputerBasics/Root"
+import CompiuterBasicsCourses from "./routes/Courses/CompBasics/Root"
 import GitCourses from "./routes/Courses/Git/Root"
 import CompiuterBasicsIntro from "./docs/ComputerBasics/Intro.mdx"
 import AboutAndHistory from "./docs/Lua/Beginner/AboutAndHistory.mdx"
@@ -39,9 +39,14 @@ function App() {
             <AboutAndHistory />
           </div>
           <Separator className="my-2" />
-          <Button onClick={() => setLocation("/courses/lua/beginner/printing")}>
-            Next ➡️
-          </Button>
+          <div className="flex justify-between">
+            <div />
+            <Button
+              onClick={() => setLocation("/courses/lua/beginner/printing")}
+            >
+              Next ➡️
+            </Button>
+          </div>
         </Route>
         <Route path="/courses/lua/beginner/printing">
           <div className="prose prose-invert prose-headings:font-bold">
@@ -70,9 +75,7 @@ function App() {
           <Separator className="my-2" />
           <div className="flex justify-between">
             <Button
-              onClick={() =>
-                setLocation("/courses/lua/beginner/printing")
-              }
+              onClick={() => setLocation("/courses/lua/beginner/printing")}
             >
               ⬅️ Back
             </Button>

@@ -36,5 +36,5 @@
 - What is Version Control?
 - Benefits
 - Basics
-- What is GitHub & How Do They Compare?
-- Alternatives to GitHub
+- What is GitHub
+- Alternatives to GitHub & How Do They Compare?
