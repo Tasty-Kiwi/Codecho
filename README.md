@@ -2,6 +2,10 @@
 
 A programming course for individuals new to the programming world.
 
+## ⚠️ Notice
+
+Codecho is under construction. Most courses are not finished yet.
+
 ## License
 
 The code is licensed under the MIT license.
